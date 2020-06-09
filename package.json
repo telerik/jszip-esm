@@ -14,7 +14,7 @@
   "scripts": {
     "build-package": "rollup -c",
     "lint": "eslint src",
-    "test": "node-qunit-puppeteer http://localhost:8080/test",
+    "test": "node-qunit-puppeteer http://localhost:8080/test 30000 \"--no-sandbox\"",
     "semantic-release": "semantic-release pre && semantic-prerelease publish --public && semantic-release post"
   },
   "keywords": [
