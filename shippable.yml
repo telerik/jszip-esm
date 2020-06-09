@@ -1,0 +1,40 @@
+language: node_js
+
+node_js:
+  - 10
+
+env:
+  global:
+    - PATH=$PATH:./node_modules/.bin
+    - secure: uW+a9ILOBWyyu0PhcoEjyu1vvfWc1q3rQi7Rj69rLKhg1tia9zEFiLWxY3pTO6TsrgUuH+SD1zzElVppV3kkbwL1FQ4lgACOB+p76y+c2VD+A7StLgNkWnoUSy7YRyMCZRg/7DUsw+oLOvQcUfubZqdLKRLfJca4ebfGD5utc8cfVO7HjqhFN/teFJ/7LDyTNsbpAi0oOzH0UNMyyREoi+o/Qgfqv5ByLPiiJA2bKvxBQs1CeiN4qWPWR21LDrEehLLnZZ7c/5wMh15LlYBPdxGn2pSK+0Yy9V6YrX0YQkqaXLMyOvlp53VfDlWj8LyRV0JZZoVewh9RXxPCbyvKKQ==
+
+build:
+  ci:
+    - npm install --no-audit --ignore-scripts
+    - npm run lint
+    - npm run build-package
+    - http-server -s &
+    - npm run test
+# Uncomment to publish package
+#  on_success:
+#    - npx ci-semantic-release
+
+resources:
+    - name:             jszip-esm-repo
+      type:             gitRepo
+      integration:      github-telerik
+      versionTemplate:
+        sourceName:       telerik/jszip-esm
+        branch:           develop
+jobs:
+  - name: jszip-esm-publish_develop_as_latest
+    type: runSh
+    steps:
+      - IN: jszip-esm-repo
+        switch: off
+      - TASK:
+          name: jszip-esm-publish_develop
+          script:
+            - ssh-add $KENDOpackage-baseREPO_KEYPATH
+            - cd $KENDOpackage-baseREPO_STATE && git checkout master && git pull --rebase
+            - npm install @telerik/semantic-prerelease@1 --no-save && npx release-master

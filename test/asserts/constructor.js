@@ -12,7 +12,8 @@ QUnit.test("new JSZip()", function(assert){
     assert.ok(zip instanceof JSZip, "Constructor works");
 });
 
-QUnit.test("JSZip()", function(assert){
+// Not possible with class constructors
+QUnit.skip("JSZip()", function(assert){
     var zip = JSZip(); // jshint ignore:line
     assert.ok(zip instanceof JSZip, "Constructor adds `new` before itself where necessary");
 });

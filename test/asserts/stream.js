@@ -288,7 +288,8 @@ QUnit.module("stream", function () {
         });
 
     } else {
-        QUnit.test("generateNodeStream generates an error", function(assert) {
+        // generateNodeStream is omitted
+        QUnit.skip("generateNodeStream generates an error", function(assert) {
             try {
                 var zip = new JSZip();
                 zip.generateNodeStream({type:'nodebuffer',streamFiles:true});
@@ -298,7 +299,7 @@ QUnit.module("stream", function () {
             }
         });
 
-        QUnit.test("ZipObject#nodeStream generates an error", function(assert) {
+        QUnit.skip("ZipObject#nodeStream generates an error", function(assert) {
             try {
                 var zip = JSZipTestUtils.createZipAll();
                 zip.file("Hello.txt").nodeStream('nodebuffer');

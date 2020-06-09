@@ -1,14 +1,27 @@
 {
-  "name": "jszip",
-  "version": "3.2.2",
-  "author": "Stuart Knightley <stuart@stuartk.com>",
-  "description": "Create, read and edit .zip files with JavaScript http://stuartk.com/jszip",
+  "name": "@progress/jszip-esm",
+  "description": "JSZip fork with bundler-friendly packaging",
+  "author": "Progress",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "version": "0.0.0-semantically-released",
+  "main": "./dist/jszip.js",
+  "module": "./dist/jszip-esm5.js",
+  "es2015": "./dist/jszip-esm2015.js",
+  "types": "./index.d.ts",
+  "jsdelivr": "./dist/jszip.min.js",
+  "unpkg": "./dist/jszip.min.js",
+  "sideEffects": false,
   "scripts": {
-    "test": "npm run test-node && npm run test-browser",
-    "test-node": "qunit --require ./test/helpers/test-utils.js --require ./test/helpers/node-test-utils.js test/asserts/",
-    "test-browser": "grunt build && grunt test",
-    "lint": "grunt jshint"
+    "build-package": "rollup -c",
+    "lint": "eslint src",
+    "test": "node-qunit-puppeteer http://localhost:8080/test",
+    "semantic-release": "semantic-release pre && semantic-prerelease publish --public && semantic-release post"
   },
+  "keywords": [
+    "Kendo UI",
+    "JSZip",
+    "Module"
+  ],
   "contributors": [
     {
       "name": "Franz Buchinger"
@@ -23,40 +36,51 @@
       "name": "yiminghe"
     }
   ],
-  "main": "./lib/index",
-  "browser": {
-    "readable-stream": "./lib/readable-stream-browser.js"
+  "dependencies": {
+    "@progress/pako-esm": "^0.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@rollup/plugin-buble": "^0.21.1",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@telerik/semantic-prerelease": "^1.0.0",
+    "cz-conventional-changelog": "^1.1.5",
+    "eslint": "^6.8.0",
+    "http-server": "^0.12.3",
+    "husky": "^4.2.5",
+    "node-qunit-puppeteer": "^2.0.2",
+    "rollup": "^2.3.3",
+    "rollup-plugin-terser": "^5.3.0",
+    "semantic-release": "^6.3.6"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Stuk/jszip.git"
+    "url": "https://github.com/telerik/jszip-esm.git"
   },
-  "keywords": [
-    "zip",
-    "deflate",
-    "inflate"
-  ],
-  "devDependencies": {
-    "browserify": "~13.0.0",
-    "grunt": "~0.4.1",
-    "grunt-browserify": "~5.0.0",
-    "grunt-cli": "~1.1.0",
-    "grunt-contrib-connect": "~2.0.0",
-    "grunt-contrib-jshint": "~1.0.0",
-    "grunt-contrib-uglify": "~4.0.1",
-    "grunt-saucelabs": "Stuk/grunt-saucelabs#v10.0.0",
-    "jshint": "~2.9.1",
-    "jszip-utils": "~0.0.2",
-    "package-json-versionify": "1.0.2",
-    "phantomjs-prebuilt": "2.1.15",
-    "qunit": "~2.9.2",
-    "tmp": "0.0.28"
+  "bugs": {
+    "url": "https://github.com/telerik/jszip-esm"
   },
-  "dependencies": {
-    "lie": "~3.3.0",
-    "pako": "~1.0.2",
-    "readable-stream": "~2.3.6",
-    "set-immediate-shim": "~1.0.1"
+  "release": {
+    "debug": false,
+    "branchTags": {
+      "develop": "dev"
+    },
+    "fallbackTags": {
+      "dev": "latest"
+    },
+    "analyzeCommits": "@telerik/semantic-prerelease/analyzeCommits",
+    "generateNotes": "@telerik/semantic-prerelease/generateNotes",
+    "getLastRelease": "@telerik/semantic-prerelease/getLastRelease",
+    "verifyConditions": "@telerik/semantic-prerelease/verifyConditions",
+    "verifyRelease": "@telerik/semantic-prerelease/verifyRelease"
   },
-  "license": "(MIT OR GPL-3.0)"
+  "files": [
+    "dist"
+  ]
 }
