@@ -15,9 +15,8 @@ build:
     - npm run build-package
     - http-server -s &
     - npm run test
-# Uncomment to publish package
-#  on_success:
-#    - npx ci-semantic-release
+  on_success:
+    - ./bin/ci-semantic-release
 
 resources:
     - name:             jszip-esm-repo

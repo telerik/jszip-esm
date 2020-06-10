@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+if [[ "$IS_PULL_REQUEST" == true ]]; then
+  echo "Skipping release for PR builds"
+  exit 0;
+fi
+
+if [[ "$BRANCH" != "master" ]] && [[ "$BRANCH" != "develop" ]]; then
+  echo "Skipping release for branches other than \"master\" and \"develop\""
+  exit 0;
+fi
+
+ERROR="$(npm run semantic-release 2>&1)"
+EXIT_CODE=$?
+
+echo $ERROR;
+
+if [ $EXIT_CODE -eq 1 ] && [[ $ERROR != *"ENOCHANGE"* ]]; then
+  exit 1;
+else
+  exit 0;
+fi
