@@ -81,6 +81,7 @@
     "verifyRelease": "@telerik/semantic-prerelease/verifyRelease"
   },
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ]
 }
