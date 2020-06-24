@@ -131,7 +131,7 @@ export interface JSZipLoadOptions {
     decodeFileName?(filenameBytes: Uint8Array): string;
 }
 
-export class JSZip {
+export default class JSZip {
     /**
      * Create JSZip instance
      * If no parameters given an empty zip archive will be created
