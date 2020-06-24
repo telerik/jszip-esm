@@ -34,6 +34,6 @@ jobs:
       - TASK:
           name: jszip-esm-publish_develop
           script:
-            - ssh-add $KENDOpackage-baseREPO_KEYPATH
-            - cd $KENDOpackage-baseREPO_STATE && git checkout master && git pull --rebase
+            - ssh-add $JSZIPESMREPO_KEYPATH
+            - cd $JSZIPESMREPO_STATE && git checkout master && git pull --rebase
             - npm install @telerik/semantic-prerelease@1 --no-save && npx release-master
