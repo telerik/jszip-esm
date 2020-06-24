@@ -1,6 +1,6 @@
 # JSZip-ESM
 
-This is a fork of [JSZip](https://github.com/Stuk/jszip) v3.3.0 with bundler-friendly packaging.
+This is a fork of [JSZip](https://github.com/Stuk/jszip) v3.2.2 with bundler-friendly packaging.
 
 It is used by the Excel Export module of [Progress Kendo UI](https://www.telerik.com/kendo-ui).
 
