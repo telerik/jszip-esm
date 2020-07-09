@@ -1,37 +1,23 @@
-export default class support {
-    static get base64() {
-        return true;
-    }
+const support = {
+    base64: true,
+    array: true,
+    string: true,
+    nodebuffer: false,
+    nodestream: false,
 
-    static get array() {
-        return true;
-    }
-
-    static get string() {
-        return true;
-    }
-
-    static get nodebuffer() {
-        return false;
-    }
-
-    static get nodestream() {
-        return false;
-    }
-
-    static get arraybuffer() {
+    get arraybuffer() {
         return typeof ArrayBuffer !== "undefined" && typeof Uint8Array !== "undefined";
-    }
+    },
 
     // Returns true if JSZip can read/generate Uint8Array, false otherwise.
-    static get uint8array() {
+    get uint8array() {
         return typeof Uint8Array !== "undefined";
-    }
+    },
 
-    static get blob() {
+    get blob() {
         return blob();
     }
-}
+};
 
 let blob = function() {
     let supported;
@@ -52,3 +38,5 @@ let blob = function() {
     blob = () => supported;
     return supported;
 };
+
+export default support;
