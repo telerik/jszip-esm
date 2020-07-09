@@ -4,7 +4,7 @@ import { terser } from 'rollup-plugin-terser';
 
 export default [{
     // ESM2015 bundle
-    input: 'src/main.js',
+    input: 'lib/main.js',
     output: [{
         file: 'dist/jszip-esm2015.js',
         format: 'esm'
@@ -12,7 +12,7 @@ export default [{
     external: ['@progress/pako-esm']
 }, {
     // ESM5 bundle
-    input: 'src/main.js',
+    input: 'lib/main.js',
     output: [{
         file: 'dist/jszip-esm5.js',
         format: 'esm'
@@ -21,7 +21,7 @@ export default [{
     external: ['@progress/pako-esm']
 }, {
     // UMD bundles
-    input: 'src/main.js',
+    input: 'lib/main.js',
     output: [{
         file: 'dist/jszip.js',
         format: 'umd',
@@ -35,7 +35,7 @@ export default [{
     plugins: [ resolve(), buble() ]
 }, {
     // SystemJS bundle
-    input: 'src/main.js',
+    input: 'lib/main.js',
     output: [{
         file: 'dist/jszip-system.js',
         format: 'systemjs'
