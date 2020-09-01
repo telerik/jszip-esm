@@ -37,7 +37,7 @@
     }
   ],
   "dependencies": {
-    "@progress/pako-esm": "dev"
+    "@progress/pako-esm": "^1.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
