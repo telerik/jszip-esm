@@ -27,7 +27,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-            http-server -s &
+            npx http-server -s &
             npm run test
 
       - name: Publish release
