@@ -12,6 +12,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: upload
+
+    permissions:
+        id-token: write # Required by Akeyless
+        contents: read
+        packages: read
 
     steps:
       - name: Import Secrets
