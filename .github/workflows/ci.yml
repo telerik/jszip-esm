@@ -12,6 +12,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+        id-token: write # Required by Akeyless
+        contents: read
+        packages: read
+
     steps:
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.8.0
