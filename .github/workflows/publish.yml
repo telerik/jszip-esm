@@ -11,16 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Import Secrets
+        id: import-secrets
+        uses: LanceMcCarthy/akeyless-action@v3
+        with:
+          access-id: ${{ secrets.GH_AKEYLESS_ACCESS_ID }}
+          static-secrets: '{ "/WebComponents/prod/tokens/GH_TOKEN": "GH_TOKEN" }'
+          export-secrets-to-environment: false
+
       - name: Check out master
         uses: actions/checkout@v2
         with:
           ref: master
           fetch-depth: 0 # Fetch all branches
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ steps.import-secrets.outputs.GH_TOKEN }}
 
       - name: Install modules
         run: npm install @telerik/semantic-prerelease@1 --no-save
 
       - name: Fast-forward master to develop
         run: npx release-master
-
