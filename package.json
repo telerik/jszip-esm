@@ -14,7 +14,8 @@
   "scripts": {
     "build-package": "rollup -c",
     "lint": "eslint lib",
-    "test": "node-qunit-puppeteer http://localhost:8080/test 30000 \"--no-sandbox\""
+    "test": "node-qunit-puppeteer http://localhost:8080/test 30000 \"--no-sandbox\"",
+    "prepare": "husky"
   },
   "keywords": [
     "Kendo UI",
@@ -45,7 +46,7 @@
     "@rollup/plugin-node-resolve": "^7.1.1",
     "eslint": "^6.8.0",
     "http-server": "^0.12.3",
-    "husky": "^4.2.5",
+    "husky": "^9.1.7",
     "node-qunit-puppeteer": "^2.0.2",
     "rollup": "^2.3.3",
     "rollup-plugin-terser": "^5.3.0",
