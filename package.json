@@ -13,7 +13,7 @@
   "sideEffects": false,
   "scripts": {
     "build-package": "rollup -c",
-    "lint": "eslint lib",
+    "lint": "eslint",
     "test": "node-qunit-puppeteer http://localhost:8080/test 30000 \"--no-sandbox\"",
     "prepare": "husky"
   },
@@ -44,7 +44,8 @@
     "@commitlint/config-conventional": "^19.6.0",
     "@rollup/plugin-buble": "^0.21.1",
     "@rollup/plugin-node-resolve": "^7.1.1",
-    "eslint": "^6.8.0",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
     "http-server": "^14.1.1",
     "husky": "^9.1.7",
     "node-qunit-puppeteer": "^2.0.2",
