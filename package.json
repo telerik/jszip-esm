@@ -45,7 +45,7 @@
     "@rollup/plugin-buble": "^0.21.1",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "eslint": "^6.8.0",
-    "http-server": "^0.12.3",
+    "http-server": "^14.1.1",
     "husky": "^9.1.7",
     "node-qunit-puppeteer": "^2.0.2",
     "rollup": "^2.3.3",
