@@ -62,13 +62,14 @@
     "url": "https://github.com/telerik/jszip-esm"
   },
   "release": {
-    "debug": false,
-    "branchTags": {
-      "develop": "dev"
-    },
-    "fallbackTags": {
-      "dev": "latest"
-    }
+    "branches": [{
+        "name": "master",
+        "channel": "latest"
+    }, {
+        "name": "develop",
+        "prerelease": true,
+        "channel": "dev"
+    }]
   },
   "files": [
     "dist",
