@@ -19,8 +19,10 @@ jobs:
 
     permissions:
         id-token: write # Required by Akeyless
-        contents: read
+        contents: write
+        issues: write
         packages: read
+        pull-requests: write
 
     concurrency:
         group: ${{ github.ref }}-cd
