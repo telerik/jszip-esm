@@ -9,7 +9,12 @@ on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: publish
+    environment: production
+
+    permissions:
+        id-token: write # Required by Akeyless
+        contents: read
+        packages: read
 
     steps:
       - name: Import Secrets
