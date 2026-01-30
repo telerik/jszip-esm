@@ -14,11 +14,11 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: upload
 
     permissions:
-        id-token: write # Required by Akeyless
+        id-token: write # Required for OIDC authentication
         contents: write
         issues: write
         packages: read
@@ -29,25 +29,18 @@ jobs:
         cancel-in-progress: false
 
     steps:
-      - name: Import Secrets
-        id: import-secrets
-        uses: LanceMcCarthy/akeyless-action@v3
-        with:
-          access-id: ${{ secrets.GH_AKEYLESS_ACCESS_ID }}
-          static-secrets: |
-            {
-              "${{ secrets.GH_AKEYLESS_GH_TOKEN_PATH }}": "GH_TOKEN",
-              "${{ secrets.GH_AKEYLESS_NPM_TOKEN_PATH }}": "NPM_TOKEN"
-            }
-          export-secrets-to-environment: false
-
       - name: Check out branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0 # Fetch all branches
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
       - name: Install modules
-        run: npm ci --no-audit --no-fund
+        run: npm ci
 
       - name: Verify attestations
         run: npm audit signatures
@@ -62,6 +55,8 @@ jobs:
 
       - name: Publish release
         env:
-          NPM_TOKEN: ${{ steps.import-secrets.outputs.NPM_TOKEN }}
-          GH_TOKEN: ${{ steps.import-secrets.outputs.GH_TOKEN }}
-        run: npx semantic-release
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          npm install --global --ignore-scripts semantic-release@25.0.2
+          npx semantic-release
+

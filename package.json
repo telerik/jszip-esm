@@ -51,8 +51,7 @@
     "husky": "^9.1.7",
     "jszip": "^3.10.1",
     "node-qunit-puppeteer": "^2.0.2",
-    "rollup": "^4.29.1",
-    "semantic-release": "^24.2.0"
+    "rollup": "^4.29.1"
   },
   "repository": {
     "type": "git",
@@ -60,19 +59,6 @@
   },
   "bugs": {
     "url": "https://github.com/telerik/jszip-esm"
-  },
-  "release": {
-    "branches": [{
-        "name": "master",
-        "channel": "latest"
-    }, {
-        "name": "develop",
-        "prerelease": true,
-        "channel": "dev"
-    }]
-  },
-  "publishConfig": {
-    "provenance": true
   },
   "files": [
     "dist",
