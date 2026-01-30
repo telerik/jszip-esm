@@ -19,14 +19,14 @@ jobs:
     steps:
       - name: Import Secrets
         id: import-secrets
-        uses: LanceMcCarthy/akeyless-action@v3
+        uses: LanceMcCarthy/akeyless-action@v5
         with:
           access-id: ${{ secrets.GH_AKEYLESS_ACCESS_ID }}
           static-secrets: '{ "${{ secrets.GH_AKEYLESS_GH_TOKEN_PATH }}": "GH_TOKEN" }'
           export-secrets-to-environment: false
 
       - name: Check out master
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: master
           fetch-depth: 0 # Fetch all branches
@@ -34,6 +34,6 @@ jobs:
 
       - name: Fast-forward master to develop
         run: |
-          # TODO: Remove after first sync with master
-          git checkout origin/develop -- ./tools/release-master
-          ./tools/release-master
+          git merge --ff-only --quiet origin/develop
+          git push origin master
+
